@@ -37,10 +37,11 @@ public class AccountService {
   }
 
   public AccountResponse createAccount(AccountRequest accountRequest) {
-    Account existingAccount = retrieve(accountRequest.getName());
-    if (existingAccount != null) {
-      logger.info("Account Is Exist With Name: {}", existingAccount.getName());
-      throw new AccountIsExistException(existingAccount.getName());
+    Optional<Account> existingAccount = accountRepository.findByName(accountRequest.getName());
+    if (existingAccount.isPresent()) {
+      Account account = existingAccount.get();
+      logger.info("Account Is Exist With Name: {}", account.getName());
+      throw new AccountIsExistException(account.getName());
     }
     Account account = new Account(accountRequest.getName());
     save(account);

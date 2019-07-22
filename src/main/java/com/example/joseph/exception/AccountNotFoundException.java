@@ -1,5 +1,8 @@
 package com.example.joseph.exception;
 
+import lombok.Getter;
+
+@Getter
 public class AccountNotFoundException extends RuntimeException {
 
   private final String name;
