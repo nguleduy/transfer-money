@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,5 +18,8 @@ public class AccountResponse extends Response {
 
   @JsonProperty(value = "name")
   private String name;
+
+  @JsonProperty(value = "balance")
+  private BigDecimal balance;
 
 }
